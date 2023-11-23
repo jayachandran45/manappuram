@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login.css">
+    <script defer src="login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+    <div class="complete-container">
+        <!-- Header section  -->
+    <section class="header">
+        <div class="logo-img"><img src="main-logo.png" alt=""></div>
+        <div class="back-to-home"> <a href="#" class="back-to-home-btn">BACK TO HOME</a></div>
+    </section>
+
+    <!--  -->
+
+    <!-- hero section  -->
+    <div id="carouselExampleFade" class="carousel slide carousel-fade " data-bs-ride="carousel" > 
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="secured-banner.png" class="d-block w-100 resizable-image" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="https://fastly.picsum.photos/id/1020/1200/600.jpg?hmac=TXsyyjbpDByjXjnnDICCvHPfl7nuIvmzWoj0AT85-xY" class="d-block w-100 resizable-image" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="secured-banner.png" class="d-block w-100 resizable-image" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+
+
+      <div class="hero-content-section">
+
+        <!-- text-section  -->
+
+        <div class="text-section">
+            <h1 class="line-1" >Personal Loan(Secured)</h1>
+            <h3 class="line-2">Property Loan & Doorstep Personal Loan</h3>
+            <p class="last-line" >No one understand your financial needs, like we do.</p>
+        </div>
+
+
+
+      <!-- card html code -->
+
+
+      <div class="form-parent-container">
+        <div class="form-container">
+            <div class="heading">
+                <h3>ENQUIRE NOW</h3>
+                <P>Fill in your details today and our Relationhip Officeers will contact you.</P>
+            </div>
+    
+        </div>
+        <!-- for input field -->
+        <div class="input-filed">
+            <input type="text" placeholder="Name" name="name" class="input">
+        <input type="text" placeholder="Pincode" name="Pincode" class="input">
+        <input type="text" placeholder="Email" name="Email" class="input">
+        <input type="text" placeholder="Mobile" name="Mobile" class="input">
+        <input type="text" placeholder="State" name="State" class="input">
+        <input type="text" placeholder="Security Code" name="Security Code" class="input">
+        <h1 class="captchaCode">capchacode</h1>
+        <button type="submit" class="submit-btn">Submit</button>
+        </div>
+        
+      </div>
+
+      </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var myCarousel = new bootstrap.Carousel(document.getElementById('carouselExampleFade'), {
+                interval: 1000, // Set the interval in milliseconds (e.g., 2000 for 2 seconds)
+                pause: false // Set to 'false' to enable automatic cycling
+            });
+        });
+    </script>
+</body>
+</html>
