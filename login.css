@@ -213,14 +213,14 @@ svg{
         font-size: 14px !important;
     }
     .resizable-image {
-        
+        width: 100%;
         /* Adjust as needed for smaller screens */
         object-fit: cover; /* Cover the container, may crop the image */
     }
     .form-parent-container{
         position: absolute;
         top: 90%;
-        width: 100%;
+        width: 100vw !important;
         left: 0;
         background-color: rgb(22, 22, 22);
         
@@ -237,6 +237,7 @@ svg{
     }
     .form-parent-container{
        /* font-size: 12px !important; */
+       width: 100%;
     }
 }
 
@@ -249,7 +250,9 @@ svg{
         padding: 0 2rem;
         top: 2.6rem;
     }
-   
+   .form-parent-container{
+    width: 100%;
+   }
 }
 
 @media(max-width:1600px){
