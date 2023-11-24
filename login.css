@@ -91,9 +91,9 @@
     background-color: rgba(0, 0, 0, 0.684);
     color: var(--primary-color);
     padding: 1.5rem 2rem;
-    width:400px;
+    width:420px;
     color: #fff !important;
-    border-top: 2px solid rgb(243 29 33);
+    border-top: 3px solid rgb(243 29 33);
     border-radius: 5px 5px 0 0;
 }
 
@@ -101,18 +101,22 @@
     /* border-bottom: 2px solid yellow;
     display: inline-block; */
     position: relative;
-    margin-bottom: 1.2rem;
+    margin-bottom: 1.5rem;
     display: inline-block;
+    letter-spacing: 1px;
+    font-size: 2rem;
+   
 }
 .heading > h3::before{
     content: "";
     background-color: #ffde00;
-    width: 55px;
+    width: 45px;
     height: 2px;
     position: absolute;
     top: 105%;
     left: 2px;
     border-radius:50px;
+    
 }
 .heading > h3::after{
         content: "\2193";
@@ -122,7 +126,18 @@
         right: -20px;
 
 }
-
+form{
+    margin:1rem 0 1rem 0;
+}
+form > label{
+    text-align: start;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 10px ;
+    color: rgba(255, 221, 0, 0.942);
+    font-weight: 550;
+    letter-spacing: 1px;
+}
 .input-filed > form{
     display: flex;
     flex-direction: column;
@@ -136,22 +151,30 @@
     background-color: rgba(0, 0, 0, 0) ;
     outline: none;
     border: none;
-    border: 1px solid var(--white-color);
-    border-radius: 20px;
+    border-bottom: 1px solid var(--white-color);
+    /* border-radius: 20px; */
     height: 2rem;
     padding: .6rem 0rem;
     padding-bottom: .7rem;
-    padding-left: .8rem;
+    /* padding-left: .8rem; */
+    padding-bottom: 1rem;
     font-size: 15px;
     color: white;
     letter-spacing: 1px;
 }
+svg{
+    fill: #ffde00;
+    font-size: .8rem;
+    position: relative;
+    top: -2.6px;
+    right:-3px;
+}
 .input-filed > form > input:focus{
-    /* box-shadow: 0px 2px 3px #ffffff; */
-    outline:.50px solid white;
+    box-shadow: 0px .7px 0px #ffffff;
+    
 }
 .input-filed >form> input::placeholder{
-    color: rgb(236, 236, 236);
+    color: rgba(236, 236, 236, 0.736);
 }
 .forget-btn{
     color: rgb(243 29 33);
@@ -166,6 +189,7 @@
 }
 
 .submit-btn{
+    font-size: 1.3rem;
     width: 100%;
     background-color: #ffde00;
     outline: none;
@@ -174,6 +198,7 @@
     line-height: 2rem;
     margin-top: .3rem;
     font-weight: 600;
+    padding: 3px 0;
 }
 .submit-btn:hover{
     background-color: #e0c61c;
@@ -189,7 +214,7 @@
     }
     .resizable-image {
         
-        height: 500px; /* Adjust as needed for smaller screens */
+        /* Adjust as needed for smaller screens */
         object-fit: cover; /* Cover the container, may crop the image */
     }
     .form-parent-container{
@@ -224,8 +249,11 @@
         padding: 0 2rem;
         top: 2.6rem;
     }
-    .resizable-image{
-        height: 50vh;
+   
+}
+
+@media(max-width:1600px){
+    .form-parent-container{
+        width: 500px
     }
-    
 }
