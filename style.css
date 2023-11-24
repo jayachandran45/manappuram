@@ -9,6 +9,11 @@ h1{
 }
 
 video{
-    height: 100px;
-    width: 100px;
+   width: 300px;
+    border: 2px solid black;
+}
+
+canvas{
+    border: 2px solid red;
+    height: 300px;
 }

@@ -1,4 +1,7 @@
 let imageCapture;
+const desiredWidth = 300;
+// const desiredHeight = 200;
+
 
 function onGetUserMediaButtonClick() {
   navigator.mediaDevices
@@ -12,32 +15,22 @@ function onGetUserMediaButtonClick() {
     .catch((error) => console.error(error));
 }
 
-function onGrabFrameButtonClick() {
-  imageCapture
-    .grabFrame()
-    .then((imageBitmap) => {
-      const canvas = document.querySelector("#grabFrameCanvas");
-      drawCanvas(canvas, imageBitmap);
-    })
-    .catch((error) => console.error(error));
-}
-
 function onTakePhotoButtonClick() {
   imageCapture
     .takePhoto()
     .then((blob) => createImageBitmap(blob))
     .then((imageBitmap) => {
       const canvas = document.querySelector("#takePhotoCanvas");
-      drawCanvas(canvas, imageBitmap);
+      drawCanvas(canvas, imageBitmap, desiredWidth, desiredHeight);
     })
     .catch((error) => console.error(error));
 }
 
 /* Utils */
 
-function drawCanvas(canvas, img) {
-  canvas.width = getComputedStyle(canvas).width.split("px")[0];
-  canvas.height = getComputedStyle(canvas).height.split("px")[0];
+function drawCanvas(canvas, img, desiredWidth, desiredHeight) {
+  canvas.width = desiredWidth;
+  // canvas.height = desiredHeight;
   let ratio = Math.min(canvas.width / img.width, canvas.height / img.height);
   let x = (canvas.width - img.width * ratio) / 2;
   let y = (canvas.height - img.height * ratio) / 2;
@@ -53,11 +46,11 @@ function drawCanvas(canvas, img) {
       x,
       y,
       img.width * ratio,
-      img.height * ratio,
+      img.height * ratio
     );
 }
 
 document.querySelector("video").addEventListener("play", () => {
-  document.querySelector("#grabFrameButton").disabled = false;
+  
   document.querySelector("#takePhotoButton").disabled = false;
 });

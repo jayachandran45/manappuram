@@ -17,6 +17,7 @@
 }
 
 .resizable-image {
+    opacity: 1;
     overflow: hidden !important;
     height: 100vh;
     display: block;
@@ -46,7 +47,7 @@
     align-items: center; 
 }
 .header > div > *{
-    margin: .8rem calc(var(--custom-marpad-size) + 2rem);
+    margin: 1.5rem calc(var(--custom-marpad-size) + 3rem);
 }
 .back-to-home{
     align-self: flex-start;
@@ -68,7 +69,8 @@
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    padding: 0 calc(var(--custom-marpad-size) + 2rem);
+    padding: 0 calc(var(--custom-marpad-size) + 3rem);
+    padding-right: calc(var(--custom-marpad-size) + 4rem) ;
 }
 
 .line-1{
@@ -88,15 +90,19 @@
 .form-parent-container{
     background-color: rgba(0, 0, 0, 0.684);
     color: var(--primary-color);
-    padding: 1rem 2rem;
+    padding: 1.5rem 2rem;
     width:400px;
     color: #fff !important;
+    border-top: 2px solid rgb(243 29 33);
+    border-radius: 5px 5px 0 0;
 }
 
 .heading > h3{
     /* border-bottom: 2px solid yellow;
     display: inline-block; */
     position: relative;
+    margin-bottom: 1.2rem;
+    display: inline-block;
 }
 .heading > h3::before{
     content: "";
@@ -106,36 +112,59 @@
     position: absolute;
     top: 105%;
     left: 2px;
+    border-radius:50px;
+}
+.heading > h3::after{
+        content: "\2193";
+        font-size: 112%;
+        position: absolute;
+        top: -2px;
+        right: -20px;
+
 }
 
-.input-filed{
+.input-filed > form{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: #fff !important;
 }
-.input-filed > input{
+.input-filed > form > input{
     width: 100%;
-    margin: .3rem 0;
+    margin-bottom: 1rem;
     background-color: rgba(0, 0, 0, 0) ;
     outline: none;
     border: none;
     border: 1px solid var(--white-color);
     border-radius: 20px;
     height: 2rem;
-    padding-left: .7rem;
-    font-size: 13px;
-    padding-bottom: 2px;
+    padding: .6rem 0rem;
+    padding-bottom: .7rem;
+    padding-left: .8rem;
+    font-size: 15px;
     color: white;
     letter-spacing: 1px;
 }
-.input-filed > input:focus{
-    box-shadow: 0px 1px 1px white;
+.input-filed > form > input:focus{
+    /* box-shadow: 0px 2px 3px #ffffff; */
+    outline:.50px solid white;
 }
-.input-filed > input::placeholder{
+.input-filed >form> input::placeholder{
     color: rgb(236, 236, 236);
 }
+.forget-btn{
+    color: rgb(243 29 33);
+    text-decoration: underline;
+    letter-spacing: .2px;
+    font-weight: 550;
+    cursor: pointer;
+}
+.forget-btn:hover{
+    text-decoration: underline;
+    color: rgb(243, 45, 45);
+}
+
 .submit-btn{
     width: 100%;
     background-color: #ffde00;
@@ -143,13 +172,17 @@
     border: none;
     border-radius: 20px;
     line-height: 2rem;
+    margin-top: .3rem;
+    font-weight: 600;
 }
-
+.submit-btn:hover{
+    background-color: #e0c61c;
+}
 @media (max-width: 700px) {
     :root{
-        font-size: 14px;
-        --custom-marpad-size:2px;
-        --custom-font-size:8px;
+        /* font-size: 14px; */
+        /* --custom-marpad-size:2px; */
+        /* --custom-font-size:8px; */
     }
     .last-line{
         font-size: 14px !important;
@@ -158,9 +191,6 @@
         
         height: 500px; /* Adjust as needed for smaller screens */
         object-fit: cover; /* Cover the container, may crop the image */
-    }
-    .back-to-home{
-        font-size: 12px ;
     }
     .form-parent-container{
         position: absolute;
@@ -173,25 +203,16 @@
 
 
 }
-@media(max-width:430px){
-    .back-to-home{
-        align-self: center;
-        color: white;
-    }
-   
-}
 
 @media(max-height:600px){
     :root{
-        --custom-font-size:-5px;
+        /* --custom-font-size:-5px; */
     }
     .resizable-image{
         height: 100vh;
         object-fit: cover;
     }
     .form-parent-container{
-       font-size: 12px !important;
+       /* font-size: 12px !important; */
     }
 }
-
-
