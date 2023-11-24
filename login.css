@@ -11,20 +11,17 @@
     --custom-marpad-size:16px;
 }
 .image-container {
-    
     height: 90vh;
     overflow: hidden !important; /* Hide the overflow */
     margin: 0 auto; /* Center the container */
 }
 
 .resizable-image {
-    width: 90vw;
     overflow: hidden !important;
-    height: 90vh;
+    height: 100vh;
     display: block;
     margin: 0;
     object-fit: cover; /* Cover the container, may crop the image */
-
 }
 .carousel-control-next,.carousel-control-prev{
     display: none !important;
@@ -95,13 +92,28 @@
     width:400px;
     color: #fff !important;
 }
+
+.heading > h3{
+    /* border-bottom: 2px solid yellow;
+    display: inline-block; */
+    position: relative;
+}
+.heading > h3::before{
+    content: "";
+    background-color: #ffde00;
+    width: 55px;
+    height: 2px;
+    position: absolute;
+    top: 105%;
+    left: 2px;
+}
+
 .input-filed{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: #fff !important;
-    
 }
 .input-filed > input{
     width: 100%;
@@ -132,7 +144,6 @@
     border-radius: 20px;
     line-height: 2rem;
 }
-
 
 @media (max-width: 700px) {
     :root{
@@ -181,7 +192,6 @@
     .form-parent-container{
        font-size: 12px !important;
     }
-
 }
 
 

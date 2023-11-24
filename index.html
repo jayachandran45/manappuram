@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="app.js"></script>
+</head>
+<body>
+    
+    <h1>Image Caputuring </h1>
+    <h1>Image Capture Example</h1>
+    
+    <video id="video" width="400" height="300" autoplay></video>
+
+    <button id="getUserMediaButton" onclick="onGetUserMediaButtonClick()">Get User Media</button>
+    <button id="grabFrameButton" onclick="onGrabFrameButtonClick()" disabled>Grab Frame</button>
+    <button id="takePhotoButton" onclick="onTakePhotoButtonClick()" disabled>Take Photo</button>
+
+    <canvas id="grabFrameCanvas" width="400" height="300"></canvas>
+    <canvas id="takePhotoCanvas" width="400" height="300"></canvas>
+    
+</body>
+</html>
