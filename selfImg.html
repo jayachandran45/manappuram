@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Capture Example</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        video, canvas {
+            border: 2px solid black;
+            margin: 10px 0;
+            width: 640px; /* Adjust this to your desired width */
+            height: 480px; /* Adjust this to your desired height */
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Capture Example</h1>
+    
+    <div class="container">
+        <video autoplay></video>
+        <canvas id="grabFrameCanvas" width="640" height="480"></canvas>
+        <canvas id="takePhotoCanvas" width="640" height="480"></canvas>
+        <button id="getUserMediaButton" onclick="onGetUserMediaButtonClick()">Get User Media</button>
+        <button id="grabFrameButton" onclick="onGrabFrameButtonClick()" disabled>Grab Frame</button>
+        <button id="takePhotoButton" onclick="onTakePhotoButtonClick()" disabled>Take Photo</button>
+    </div>
+
+    <script>
+        let imageCapture;
+
+        function onGetUserMediaButtonClick() {
+            navigator.mediaDevices
+                .getUserMedia({
+                    video: {
+                        width: { ideal: 1920 },
+                        height: { ideal: 1080 },
+                    },
+                })
+                .then((mediaStream) => {
+                    document.querySelector("video").srcObject = mediaStream;
+
+                    const track = mediaStream.getVideoTracks()[0];
+                    imageCapture = new ImageCapture(track);
+
+                    // Enable buttons when the video starts playing
+                    document.querySelector("video").addEventListener("play", () => {
+                        document.querySelector("#grabFrameButton").disabled = false;
+                        document.querySelector("#takePhotoButton").disabled = false;
+                    });
+                })
+                .catch((error) => console.error(error));
+        }
+
+        function onGrabFrameButtonClick() {
+            imageCapture
+                .grabFrame()
+                .then((imageBitmap) => {
+                    const canvas = document.querySelector("#grabFrameCanvas");
+                    drawCanvas(canvas, imageBitmap, 500);
+                    const base64 = canvas.toDataURL("image/png");
+                    console.log("Base64 Image:", base64);
+                })
+                .catch((error) => console.error(error));
+        }
+
+        function onTakePhotoButtonClick() {
+            imageCapture
+                .takePhoto()
+                .then((blob) => createImageBitmap(blob))
+                .then((imageBitmap) => {
+                    const canvas = document.querySelector("#takePhotoCanvas");
+                    drawCanvas(canvas, imageBitmap, 500);
+                    const base64 = canvas.toDataURL("image/png");
+                    console.log("Base64 Image:", base64);
+                })
+                .catch((error) => console.error(error));
+        }
+
+        /* Utils */
+
+        function drawCanvas(canvas, img, targetHeight) {
+            const aspectRatio = img.width / img.height;
+            const targetWidth = targetHeight * aspectRatio;
+
+            canvas.width = targetWidth;
+            canvas.height = targetHeight;
+
+            canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+            canvas.getContext("2d").drawImage(img, 0, 0, img.width, img.height, 0, 0, canvas.width, canvas.height);
+        }
+    </script>
+</body>
+</html>

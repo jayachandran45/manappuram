@@ -22,7 +22,7 @@
     height: 100vh;
     display: block;
     margin: 0;
-    object-fit: cover; /* Cover the container, may crop the image */
+    object-fit: cover; 
 }
 .carousel-control-next,.carousel-control-prev{
     display: none !important;
@@ -66,7 +66,7 @@
     width: 100%;
     top: 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     height: 100%;
     padding: 0 calc(var(--custom-marpad-size) + 3rem);
@@ -122,8 +122,8 @@
         content: "\2193";
         font-size: 112%;
         position: absolute;
-        top: -2px;
-        right: -20px;
+        top: -3px;
+        right: -25px;
 
 }
 form{

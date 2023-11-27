@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        navigator.mediaDevices.getUserMedia({
+    video: {
+        width: { ideal: 1920 },
+        height: { ideal: 1080 },
+    },
+})
+.then((mediaStream) => {
+    const track = mediaStream.getVideoTracks()[0];
+    const settings = track.getSettings();
+    
+    console.log("Camera Dimensions:", settings.width, "x", settings.height);
+})
+.catch((error) => console.error(error));
+
+    </script>
+</body>
+</html>
