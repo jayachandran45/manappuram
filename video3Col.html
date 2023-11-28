@@ -22,21 +22,28 @@
         }
 
         video, canvas {
-            border: 2px solid rgb(219, 219, 37);
+            border: 3px solid rgb(240, 240, 9);
             margin: 10px 4px;
             width: 320px; /* Adjust this to your desired width */
             height: 240px; /* Adjust this to your desired height */
-
+            background-color: rgb(114, 114, 114);
         }
 
         button {
             margin-top: 10px;
+            padding: 5px 10px;            
         }
         .flex{
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+        .col{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
     </style>
 </head>
 <body>
@@ -44,17 +51,24 @@
     
     <div class="container">
         <div class="flex">
-            <video autoplay></video>
-        <canvas id="grabFrameCanvas"></canvas>
-        <canvas id="takePhotoCanvas"></canvas>
+            <div class="col-1 col">
+                <video autoplay></video>
+                <button id="getUserMediaButton" onclick="onGetUserMediaButtonClick()">GET USER MEDIA</button>
+            </div>
+            <div class="col-2 col">
+                <canvas id="grabFrameCanvas"></canvas>
+                <button id="grabFrameButton" onclick="onGrabFrameButtonClick()" disabled>TAKE FRONT</button>
+            </div>
+            <div class="col-3 col">
+                <canvas id="takePhotoCanvas"></canvas>
+                <button id="takePhotoButton" onclick="onTakePhotoButtonClick()" disabled>TAKE BACK</button>
+            </div>
         </div>
-        <button id="getUserMediaButton" onclick="onGetUserMediaButtonClick()">Get User Media</button>
-        <button id="grabFrameButton" onclick="onGrabFrameButtonClick()" disabled>Grab Frame</button>
-        <button id="takePhotoButton" onclick="onTakePhotoButtonClick()" disabled>Take Photo</button>
     </div>
-
+    <button class="next close-mediaStream">Close mediaStream</button>
     <script>
         let imageCapture;
+        let mediaStream;
 
         function onGetUserMediaButtonClick() {
             navigator.mediaDevices
@@ -64,8 +78,9 @@
                         height: { ideal: 480 },
                     },
                 })
-                .then((mediaStream) => {
-                    document.querySelector("video").srcObject = mediaStream;
+                .then((stream) => {
+                    mediaStream = stream
+                    document.querySelector("video").srcObject = stream;
 
                     const track = mediaStream.getVideoTracks()[0];
                     imageCapture = new ImageCapture(track);
@@ -80,28 +95,40 @@
         }
 
         function onGrabFrameButtonClick() {
+            const FrontBtnEle = document.querySelector("#grabFrameButton")
+            const canvas = document.querySelector("#grabFrameCanvas");
+            clearCanvas(canvas);
+            
             imageCapture
                 .grabFrame()
                 .then((imageBitmap) => {
-                    const canvas = document.querySelector("#grabFrameCanvas");
                     drawCanvas(canvas, imageBitmap);
                     const base64 = canvas.toDataURL("image/png");
                     console.log("Base64 Image:", base64);
+                    
                 })
                 .catch((error) => console.error(error));
+                
+                FrontBtnEle.innerHTML = "RETAKE FRONT";
+            
         }
 
         function onTakePhotoButtonClick() {
+            const BackBtnEle = document.querySelector("#takePhotoButton")
+            const canvas = document.querySelector("#takePhotoCanvas");
+            clearCanvas(canvas);
+
             imageCapture
                 .takePhoto()
                 .then((blob) => createImageBitmap(blob))
                 .then((imageBitmap) => {
-                    const canvas = document.querySelector("#takePhotoCanvas");
                     drawCanvas(canvas, imageBitmap);
                     const base64 = canvas.toDataURL("image/png");
                     console.log("Base64 Image:", base64);
                 })
                 .catch((error) => console.error(error));
+
+                BackBtnEle.innerHTML = "RETAKE BACK"
         }
 
         /* Utils */
@@ -112,6 +139,28 @@
             canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
             canvas.getContext("2d").drawImage(img, 0, 0, img.width, img.height);
         }
+
+        function clearCanvas(canvas) {
+            const context = canvas.getContext("2d");
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            // Set a background color
+            context.fillStyle = "#FFFFFF"; // White background
+            context.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        const closeMstreamBtn= document.querySelector(".close-mediaStream")
+
+        closeMstreamBtn.addEventListener('click', () => {
+    // Assuming you have a reference to the media stream
+    if (mediaStream) {
+        const tracks = mediaStream.getTracks();
+        tracks.forEach(track => track.stop());
+        
+        // Set the srcObject of your video elements to null to close the camera preview
+        document.querySelector("video").srcObject = null;
+        
+    }
+});
     </script>
 </body>
 </html>
