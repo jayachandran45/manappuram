@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+   <style>
+     .box{
+        width: 200px;
+        height: 200px;
+        background-color: red;
+       
+        animation: color-change 2s linear both ;
+     }
+     .box:hover{
+      
+     }
+     @keyframes color-change {
+        0%{
+            background-color: black;
+        }
+        25%{
+            background-color: white;
+            transform: rotate(90deg);
+        }
+        100%{
+            background-color: green;
+        }
+     }
+     .rotate{
+        height: 100px;
+        width: 100px;
+        border: 3px solid;
+        border-radius: 50%;
+        position: absolute;
+        top: -3px;
+        right: -3px;
+        border-bottom: 2px solid green;
+        visibility: hidden;
+         animation: rota 2s linear both infinite;
+     }
+     .rot{
+        height: 100px;
+        width: 100px;
+        border: 3px solid;
+        border-radius: 50%;
+        position: relative;
+        margin:2rem;
+        transition: transform 3s;
+       
+        border-bottom: 2px solid green;
+    }
+    @keyframes rota{
+        100%{
+            transform: rotate(360deg);
+        }
+    }
+     .rotate::before{
+        content: "";
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background-color: red;
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        visibility: visible;
+        box-shadow: 2px 2px 2px black;
+
+        /* animation: rot 3s both infinite; */
+     }
+     
+     .rotate::after{
+        content: "";
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background-color: #00ff04;
+        display: inline-block;
+        position: absolute;
+        left: 100%;
+        right: 0;
+        top: 50%;
+        /* transform: translateY(-50%); */
+        transform: translate(-50%,-50%);
+        visibility: visible;
+        box-shadow: 2px 2px 2px black;
+        /* animation: rot 3s both infinite; */
+     }
+
+   </style>
+</head>
+<body>
+   <!-- <div class="box">
+    Hellow orld
+   </div> -->
+
+   <div class="rot">
+    <div class="rotate">
+
+    </div>
+   </div>
+  
+
+</body>
+</html>
